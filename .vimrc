@@ -469,3 +469,16 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 
 let NERDTreeIgnore=['\.pyc']
+
+autocmd BufWritePost *.c :call FormatC()
+autocmd BufWritePost *.h :call FormatC()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"设置在c文件保存时自动格式化
+"调用命令是 au BufWritePost *.c :call FormatC()
+func FormatC()
+exec     " !indent -linux %"
+exec     " !rm %~"
+edit
+syntax enable
+endfunction 
+
